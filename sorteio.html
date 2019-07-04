@@ -28,8 +28,8 @@
 	<script>
 		function sortear(){
 			var lista = document.getElementById('lista').value;
-			var array = lista.split('\n');
-			var numeroAleatorio = Math.floor(Math.random() * array.length);
+			var sorteio = lista.split('\n');
+			var numeroAleatorio = Math.floor(Math.random() * sorteio.length);
 			if(lista != ""){
 				alert("Item Sorteado " + lista[numeroAleatorio]);
 			}
