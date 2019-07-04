@@ -29,9 +29,15 @@
 	</body>
 	<script>
 		function sortear(){
-			var lista = document.getElementById('lista').value.split('\n');
-			var numeroAleatorio = Math.floor(Math.random() * lista.length);
-			alert("Sorteado " + lista[numeroAleatorio]);
+			var lista = document.getElementById('lista');
+			var array = lista.value.split('\n');
+			var numeroAleatorio = Math.floor(Math.random() * array.length);
+			if(lista != ""){
+				alert("Item Sorteado " + lista[numeroAleatorio]);
+			}
+			else {
+				alert("Preencha o campo com nomes um abaixo do outro!");
+			}
 		}
 	</script>
 </html>
