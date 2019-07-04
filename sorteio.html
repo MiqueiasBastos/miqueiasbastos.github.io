@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<title>LiveSystem Soluções</title>
+		<title>Sistema de Sorteio - LiveSystem Soluções</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<meta name="author" content="Miquéias Bastos">
@@ -21,6 +21,16 @@
 	</head>
   
 	<body>
-  
+  		<form>
+			<h1>Sistema de Sorteio LiveSystem</h1>
+			<textarea name="lista" id="lista">
+			</textarea>
+			<button>Sortear</button>
+		</form>
 	</body>
+	<script>
+		var lista = getElementById('lista').value.split('\n');
+		var numeroAleatorio = Math.floor(Math.random() * lista.length);
+		alert("Sorteado " + lista[numeroAleatorio])
+	</script>
 </html>
