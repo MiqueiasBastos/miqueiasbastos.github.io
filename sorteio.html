@@ -29,7 +29,7 @@
 	</body>
 	<script>
 		function sortear(){
-			var lista = getElementById('lista').value.split('\n');
+			var lista = document.getElementById('lista').value.split('\n');
 			var numeroAleatorio = Math.floor(Math.random() * lista.length);
 			alert("Sorteado " + lista[numeroAleatorio]);
 		}
