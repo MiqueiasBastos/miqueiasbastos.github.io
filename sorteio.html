@@ -23,14 +23,15 @@
 	<body>
   		<form>
 			<h1>Sistema de Sorteio LiveSystem</h1>
-			<textarea name="lista" id="lista">
-			</textarea>
-			<button>Sortear</button>
+			<textarea name="lista" id="lista"></textarea><br>
+			<button onClick="sortear();">Sortear</button>
 		</form>
 	</body>
 	<script>
-		var lista = getElementById('lista').value.split('\n');
-		var numeroAleatorio = Math.floor(Math.random() * lista.length);
-		alert("Sorteado " + lista[numeroAleatorio])
+		function sortear(){
+			var lista = getElementById('lista').value.split('\n');
+			var numeroAleatorio = Math.floor(Math.random() * lista.length);
+			alert("Sorteado " + lista[numeroAleatorio]);
+		}
 	</script>
 </html>
