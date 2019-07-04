@@ -29,8 +29,8 @@
 	</body>
 	<script>
 		function sortear(){
-			var lista = document.getElementById('lista');
-			var array = lista.value.split('\n');
+			var lista = document.getElementById('lista').value;
+			var array = lista.split('\n');
 			var numeroAleatorio = Math.floor(Math.random() * array.length);
 			if(lista != ""){
 				alert("Item Sorteado " + lista[numeroAleatorio]);
