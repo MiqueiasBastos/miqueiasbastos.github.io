@@ -24,10 +24,15 @@
 			textarea {
 				width: 100%;
 				height: 100%;
+				padding: 0;
+				margin: 0;
+			}
+			#botaoArea {
+				height: 50pt;
 			}
 			button {
 				width: 100%;
-				height: 18pt;
+				height: 100%;
 				background-color: #63CDFF;
 				color: #FFF;
 			}
@@ -35,9 +40,9 @@
 	</head>
   
 	<body>
-		<div style="flex:1; background-color: #CCC"><h1>Sistema de Sorteio LiveSystem</h1></div>
-		<div style="flex:1; background-color: #FFF"><textarea id="lista"></textarea></div>
-		<div style="flex:1; background-color: #CCC"><button onClick="sortear()" style="flex: 1">Sortear</button></div>
+		<div id="tituloArea"><h1>Sistema de Sorteio LiveSystem</h1></div>
+		<div id="textoArea"><textarea id="lista"></textarea></div>
+		<div id="botaoArea"><button onClick="sortear()">Sortear</button></div>
 	</body>
 	<script>
 		function sortear(){
