@@ -27,10 +27,10 @@
 	</body>
 	<script>
 		function sortear(){
-			var lista = document.getElementById('lista').value;
-			var sorteio = lista.split('\n');
+			var lista = document.getElementById('lista');
+			var sorteio = lista.value.split('\n');
 			var numeroAleatorio = Math.floor(Math.random() * sorteio.length);
-			if(lista != ""){
+			if(lista.value != ""){
 				alert("Item Sorteado " + lista[numeroAleatorio]);
 			}
 			else {
