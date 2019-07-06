@@ -61,7 +61,7 @@ display: flex;
 			}
 #instrucoesArea {
 padding: 5pt;
-background-color: #FFF;
+padding-top: 0;
 }
 			#botaoArea {
 				padding: 5pt;
@@ -73,6 +73,7 @@ background-color: #FFF;
 	<body>
 		<div id="tituloArea"><h1>Sistema de Sorteio LiveSystem</h1></div>
 <div id="instrucoesArea">
+<span style="background-color: #FFF;border-radius: 5pt;">
 <h2>Instruções</h2>
 <p>
 Para realizar o sorteio, basta digitar os nomes no campo a baixo.<br>
@@ -80,6 +81,7 @@ Deixe apenas 1 nome por linha.<br>
 Evite linhas em branco.<br>
 Ao concluir a lista, basta clicar em Sortear.
 </p>
+</span>
 </div>
 		<div id="textoArea"><textarea id="lista"></textarea></div>
 		<div id="botaoArea"><button onClick="sortear()">Sortear</button></div>
