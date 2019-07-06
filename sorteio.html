@@ -7,7 +7,7 @@
   <meta name="author" content="Miquéias Bastos">
 		<meta name="description" content="Sistema de Sorteio LiveSystem Soluções">
 		<meta name="keywords" content="sorteio, lista, aleatorio, premios">
-		<meta name="theme-color" content="#63CDFF">
+		<meta name="theme-color" content="#555">
 		<style>
 			html, body {
 				width: 100%;
@@ -22,8 +22,8 @@
 				background-color: #DDD;
 			}
 			h1 {
-				background-color: #63CDFF;
-				color: #FFF;
+				background-color: #AAA;
+				color: #333;
 				padding: 10pt;
 				margin: 0;
 				font-size: 18pt;
@@ -45,6 +45,7 @@
 			li {
 				margin: 0;
 				padding:0;
+				color: #333;
 			}
 			textarea {
 				display: flex;
@@ -62,8 +63,8 @@
 				width: 100%;
 				height: 100%;
 				border: none;
+				outline: none;
 				border-radius: 5pt;
-				background-color: #63CDFF;
 				color: #FFF;
 				font-size: 18pt;
 			}
@@ -86,6 +87,15 @@
 				padding-top: 0;
 				height: 40pt;
 			}
+			.azul {
+				background-color: #63CDFF;
+			}
+			.verde {
+				background-color: #51A545;
+			}
+			.vermelho {
+				background-color: #A52A32;
+			}
   </style>
 	</head>
   
@@ -95,7 +105,7 @@
 <div style="background-color: #FFF; padding: 5pt; border-radius: 5pt;">
 <h2>Instruções</h2>
 <ul>
-<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adicione os nomes clicando no botão "Adicionar"</li>
+<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adicione-los clicando no botão "Adicionar"</li>
 <li>Deixe apenas 1 nome por linha.</li>
 <li>Evite linhas em branco.</li>
 <li>Ao concluir a lista, basta clicar em "Sortear".</li>
@@ -103,14 +113,15 @@
 </div>
 </div>
 		<div id="textoArea"><textarea id="lista"></textarea></div>
-		<div id="botaoArea"><button onClick="adicionar()">Adicionar</button></div>
-		<div id="botaoArea"><button onClick="sortear()">Sortear</button></div>
+		<div id="botaoArea"><button onClick="adicionar()" class="azul">Adicionar</button></div>
+		<div id="botaoArea"><button onClick="limpar()" class="vermelho">Limpar</button></div>
+		<div id="botaoArea"><button onClick="sortear()" class="verde">Sortear</button></div>
 	</body>
 	<script>
 		function sortear(){
-			var lista = document.getElementById('lista');
-			var sorteio = lista.value.split('\n');
-			var numeroAleatorio = Math.floor(Math.random() * sorteio.length);
+			let lista = document.getElementById('lista');
+			let sorteio = lista.value.split('\n');
+			let numeroAleatorio = Math.floor(Math.random() * sorteio.length);
 			if(lista.value != ""){
 				alert("Sorteado: " + sorteio[numeroAleatorio]);
 			}
@@ -120,17 +131,19 @@
 		}
 		
 		function adicionar(){
-		
-		var nome = prompt("Insira um nome para o sorteio");
-
-		if (nome != null) {
-    let lista = document.getElementById('lista').value;
-    if(lista == ""){
-    	document.getElementById('lista').value = nome;
-    } else {
-    	document.getElementById('lista').value = lista + "\n" + nome;
-    }
+			var nome = prompt("Insira um nome para o sorteio");
+			if(nome != null) {
+				let lista = document.getElementById('lista').value;
+				if(lista == ""){
+					document.getElementById('lista').value = nome;
+				}
+				else {
+					document.getElementById('lista').value = lista + "\n" + nome;
+   }
 			}
+		}
+		function limpar(){
+			document.getElementById('lista').value = "";
 		}
 	</script>
 </html>
