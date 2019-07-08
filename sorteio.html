@@ -105,9 +105,7 @@
 <div style="background-color: #FFF; padding: 5pt; border-radius: 5pt;">
 <h2>Instruções</h2>
 <ul>
-<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adicione-los clicando no botão "Adicionar"</li>
-<li>Deixe apenas 1 nome por linha.</li>
-<li>Evite linhas em branco.</li>
+<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adiciona-los clicando no botão "Adicionar"</li>
 <li>Ao concluir a lista, basta clicar em "Sortear".</li>
 </ul>
 </div>
@@ -118,7 +116,39 @@
 		<div id="botaoArea"><button onClick="sortear()" class="verde">Sortear</button></div>
 	</body>
 	<script>
+		
+		
+		function arrumar(){
+			let obj = document.getElementById('lista');
+			let original = obj.value;
+			function substituir(texto){
+				return texto.replace("\n\n", "\n");
+			}
+			let aux = original;
+			let mod = substituir(original);
+			while(aux != mod) {
+				aux = mod;
+				mod = substituir(mod);
+			}
+			
+			
+			vet = mod.split('\n');
+			
+			if(vet[0] == ""){
+				vet.shift();
+			}
+			if(vet[vet.length-1] == ""){
+				vet.pop();
+			}
+			
+			res = vet.join("\n");
+			
+			obj.value = res;
+		}
+		
+		
 		function sortear(){
+			arrumar();
 			let lista = document.getElementById('lista');
 			let sorteio = lista.value.split('\n');
 			let numeroAleatorio = Math.floor(Math.random() * sorteio.length);
@@ -145,5 +175,8 @@
 		function limpar(){
 			document.getElementById('lista').value = "";
 		}
+		
+		
+		
 	</script>
 </html>
