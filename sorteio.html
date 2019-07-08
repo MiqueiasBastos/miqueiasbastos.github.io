@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
- <head>
-  <title>Sistema de Sorteio - LiveSystem Soluções</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <meta name="author" content="Miquéias Bastos">
+	<head>
+		<title>Sistema de Sorteio - LiveSystem Soluções</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="author" content="Miquéias Bastos">
 		<meta name="description" content="Sistema de Sorteio LiveSystem Soluções">
 		<meta name="keywords" content="sorteio, lista, aleatorio, premios">
 		<meta name="theme-color" content="#555">
@@ -39,12 +39,12 @@
 			}
 			ul {
 				margin: 0;
-				padding:0;
+				padding: 0;
 				padding-left: 15pt;
 			}
 			li {
 				margin: 0;
-				padding:0;
+				padding: 0;
 				color: #333;
 			}
 			textarea {
@@ -57,7 +57,7 @@
 				border-radius: 5pt;
 				background-color: #FFF;
 				resize: none;
-				font-size:12pt;
+				font-size: 14pt;
 			}
 			button {
 				width: 100%;
@@ -67,10 +67,11 @@
 				border-radius: 5pt;
 				color: #FFF;
 				font-size: 18pt;
+				padding: 5pt;
 			}
 			#textoArea {
 				display: flex;
-				flex:1;
+				flex: 1;
 				padding: 5pt;
 				padding-top: 0;
 				height: 40pt;
@@ -96,28 +97,134 @@
 			.vermelho {
 				background-color: #A52A32;
 			}
+			.cinza {
+				background-color: #AAA;
+			}
+			#blackBox {
+				background-color: rgba(0,0,0,0.5);
+				z-index: 1000;
+				position: fixed;
+				height: 100%;
+				width: calc(100% - 20pt);
+				display: none;
+				justify-content: center;
+				align-items: center;
+				padding: 10pt;
+			}
+			#addBox {
+				padding: 10pt;
+				text-align: center;
+				font-size: 18pt;
+				background-color: #FFF;
+				display: none;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			#addBox input {
+				outline: none;
+				display: flex;
+				width: calc(100% - 11pt);
+				flex: 1;
+				border: 0.5pt solid #ccc;
+				border-radius: 5pt;
+				margin: 10pt 0;
+				padding: 5pt;
+				font-size: 18pt
+			}
+			#alertaBox {
+				padding: 10pt;
+				text-align: center;
+				width: 200pt;
+				font-size: 18pt;
+				background-color: #FFF;
+				display: none;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			#carregandoBox {
+				padding: 10pt;
+				text-align: center;
+				width: 150pt;
+				font-size: 18pt;
+				background-color: #FFF;
+				display: none;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			#carregandoBox img {
+				padding-top: 10pt;
+			}
+			#sorteadoBox {
+				padding: 10pt;
+				text-align: center;
+				width: 150pt;
+				font-size: 18pt;
+				background-color: #FFF;
+				display: none;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+			#addMsg {
+				font-size: 12pt;
+				margin-bottom: 10pt;
+			}
   </style>
 	</head>
-  
 	<body>
-		<div id="tituloArea"><h1>Sistema de Sorteio LiveSystem</h1></div>
-<div id="instrucoesArea">
-<div style="background-color: #FFF; padding: 5pt; border-radius: 5pt;">
-<h2>Instruções</h2>
-<ul>
-<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adiciona-los clicando no botão "Adicionar"</li>
-<li>Ao concluir a lista, basta clicar em "Sortear".</li>
-</ul>
-</div>
-</div>
-		<div id="textoArea"><textarea id="lista"></textarea></div>
-		<div id="botaoArea"><button onClick="adicionar()" class="azul">Adicionar</button></div>
-		<div id="botaoArea"><button onClick="limpar()" class="vermelho">Limpar</button></div>
-		<div id="botaoArea"><button onClick="sortear()" class="verde">Sortear</button></div>
+		<div id="blackBox">
+			<div id="addBox">
+				<b>Adicionar</b>
+				<input type="text" id="addInput" size="10" />
+				<span id="addMsg"></span>
+				<div style="display: flex; flex-direction: row">
+					<button class="azul" style="flex:2; margin-right: 10pt" onClick="addNome()">Adicionar</button>
+					<button class="cinza" style="flex:2" onClick="fecharPop('addBox')">Cancelar</button>
+				</div>
+			</div>
+			<div id="carregandoBox">
+				<span id="carregandoMsg">Carregando...</span>
+				<img src="carregando.gif" width="80">
+			</div>
+			<div id="alertaBox">
+				<span id="alertaMsg" style="padding-bottom: 10pt"></span>
+				<button class="cinza" onClick="fecharPop('alertaBox')">Fechar</button>
+			</div>
+			<div id="sorteadoBox">
+				<strong>Sorteado</strong>
+				<span id="nomeSorteado" style="padding:10pt 0"></span>
+				<button class="cinza" onClick="fecharPop('sorteadoBox')">Fechar</button>
+			</div>
+		</div>
+		<div id="tituloArea">
+			<h1>Sistema de Sorteio LiveSystem</h1>
+		</div>
+		<div id="instrucoesArea">
+			<div style="background-color: #FFF; padding: 5pt; border-radius: 5pt;">
+				<h2>Instruções</h2>
+				<ul>
+					<li>Para realizar o sorteio, basta digitar os nomes no campo abaixo, ou adiciona-los clicando no botão "Adicionar"</li>
+					<li>Ao concluir a lista, basta clicar em "Sortear".</li>
+				</ul>
+			</div>
+		</div>
+		<div id="textoArea">
+			<textarea id="lista"></textarea>
+		</div>
+		<div id="botaoArea">
+			<button onClick="addBoxExibir()" class="azul">Adicionar</button>
+		</div>
+		<div id="botaoArea">
+			<button onClick="limpar()" class="vermelho">Limpar</button>
+		</div>
+		<div id="botaoArea">
+			<button onClick="sortear()" class="verde">Sortear</button>
+		</div>
 	</body>
 	<script>
-		
-		
 		function arrumar(){
 			let obj = document.getElementById('lista');
 			let original = obj.value;
@@ -130,53 +237,97 @@
 				aux = mod;
 				mod = substituir(mod);
 			}
-			
-			
 			vet = mod.split('\n');
-			
 			if(vet[0] == ""){
 				vet.shift();
 			}
 			if(vet[vet.length-1] == ""){
 				vet.pop();
 			}
-			
 			res = vet.join("\n");
-			
 			obj.value = res;
 		}
-		
-		
-		function sortear(){
-			arrumar();
-			let lista = document.getElementById('lista');
-			let sorteio = lista.value.split('\n');
-			let numeroAleatorio = Math.floor(Math.random() * sorteio.length);
-			if(lista.value != ""){
-				alert("Sorteado: " + sorteio[numeroAleatorio]);
-			}
-			else {
-				alert("Preencha o campo com nomes um abaixo do outro!");
-			}
+		function embaralhar(array) {
+			var indice_atual = array.length, valor_temporario, indice_aleatorio;
+			while(0 !== indice_atual) {
+				indice_aleatorio = Math.floor(Math.random() * indice_atual);
+   indice_atual -= 1;
+   valor_temporario = array[indice_atual];
+   array[indice_atual] = array[indice_aleatorio];
+   array[indice_aleatorio] = valor_temporario;
+  }
+  return array;
 		}
-		
-		function adicionar(){
-			var nome = prompt("Insira um nome para o sorteio");
-			if(nome != null) {
-				let lista = document.getElementById('lista').value;
+		function boxView(id){
+			document.getElementById(id).style.display = "flex";
+		}
+		function boxHidden(id){
+			document.getElementById(id).style.display = "none";
+		}
+		function mudarTexto(id, texto){
+			document.getElementById(id).innerHTML = texto;
+		}
+		function fecharPop(id){
+			boxHidden(id);
+			boxHidden("blackBox");
+		}
+		function limpar(){
+			document.getElementById('lista').value = "";
+		}
+function sortear(){
+	let lista = document.getElementById('lista');
+	if(lista.value != ""){
+		boxView("blackBox");
+		mudarTexto("carregandoMsg", "Procurando linhas em branco...")
+		boxView("carregandoBox");
+		setTimeout(()=>{
+			arrumar();
+			mudarTexto("carregandoMsg", "Embaralhando nomes...");
+			setTimeout(()=>{
+				let sorteio = lista.value.split('\n');
+				sorteio = embaralhar(sorteio);
+				mudarTexto("carregandoMsg", "Sorteando...");
+				setTimeout(()=>{
+					mudarTexto("carregandoMsg", "Sorteando...");
+					let numeroAleatorio = Math.floor(Math.random() * sorteio.length);
+					boxHidden("carregandoBox");
+					mudarTexto("nomeSorteado", sorteio[numeroAleatorio])
+					boxView("sorteadoBox");
+				},2000);
+			},1500);
+		},1000);
+	}
+	else {
+		boxView("blackBox");
+		mudarTexto("alertaMsg", "Adicione pelo menos um nome na lista!")
+		boxView("alertaBox");
+	}
+}
+function addBoxExibir(){
+	document.getElementById("addMsg").innerHTML = ""
+	document.getElementById("addInput").value = "";
+	boxView("blackBox");
+	boxView("addBox");
+	document.getElementById("addInput").focus();
+}
+function addNome(){
+	let nome = document.getElementById("addInput").value;
+	if(nome != ""){
+		let lista = document.getElementById('lista').value;
 				if(lista == ""){
 					document.getElementById('lista').value = nome;
 				}
 				else {
 					document.getElementById('lista').value = lista + "\n" + nome;
    }
-			}
-		}
-		function limpar(){
-			document.getElementById('lista').value = "";
-		}
-		
-		
-		
+   document.getElementById("addInput").value = "";
+   document.getElementById("addInput").focus();
+   document.getElementById("addMsg").innerHTML = "Adicionado com sucesso!"
+	}
+	else {
+		document.getElementById("addMsg").innerHTML = "Digite um Nome!"
+		document.getElementById("addInput").focus();
+	}
+}
 	</script>
 </html>
