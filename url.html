@@ -1,0 +1,100 @@
+<DOCTYPE html>
+<html>
+<head>
+<title>Strings para URL</title>
+</head>
+<style>
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif
+}
+form {
+	width: 600pt;
+	display: flex;
+	flex-direction: column;
+	
+}
+div {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+}
+input {
+	margin: 10pt 0;
+	padding: 10pt;
+}
+input[type=text] {
+	flex: 1;
+	outline: none;
+	border-size: 1pt;
+	border-color: #DDD;
+	border-style: solid;
+	border-radius: 5pt;
+}
+input[type=submit]{
+	flex: 1;
+	outline: none;
+	color: #FFF;
+	border: none;
+	border-radius: 5pt;
+	margin-right: 10pt;
+}
+button{
+	margin: 10pt 0;
+	padding: 10pt;
+	flex: 1;
+	outline: none;
+	color: #FFF;
+	border: none;
+	border-radius: 5pt;
+}
+.azul {
+	background-color: #0CF;
+}
+.verde {
+	background-color: #0F6;
+}
+</style>
+<body>
+	<form id="formulario">
+		<label for="texto">Digite o texto para conversão</label>
+		<input type="text" id="texto" placeholder="Digite aqui..."  />
+		<label for="converter">Texto Convertido</label>
+		<input type="text" id="resultado" placeholder="Resultado aqui..." />
+		<div>
+			<input type="submit" id="converter" value="Converter" class="azul" />
+			<button id="copiar" class="verde">Copiar"</button>
+		</div>
+	</form>
+
+	<script>
+		var texto = document.querySelector('#texto');
+		var resultado = document.querySelector('#resultado');
+
+		document.querySelector("#formulario").addEventListener("submit", (event) => {
+			event.preventDefault();
+			resultado.value = removerAcentos(texto.value);
+		});
+		document.querySelector("#copiar").addEventListener("click", () => {
+			resultado.select();
+			document.execCommand('copy');
+		});
+
+		function removerAcentos(string){
+			string = string.toLowerCase();
+			string = string.replace(new RegExp('[ÁÀÂÃÄ]','gi'), 'a');
+			string = string.replace(new RegExp('[ÉÈÊË]','gi'), 'e');
+			string = string.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+			string = string.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+			string = string.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+			string = string.replace(new RegExp('[Ç]','gi'), 'c');
+			string = string.replace(new RegExp('[-]','gi'), '');
+			string = string.replace(new RegExp('[ ]','gi'), '-');
+			string = string.replace(new RegExp('[^a-z0-9-]','gi'), '');
+			return string;
+		}
+	</script>
+</body>
+</html>
