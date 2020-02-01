@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link href="lib/fontawesome/css/all.css" rel="stylesheet">
+
+    <title>Consultores Natura</title>
+</head>
+
+<body onload="carregarConsultores()">
+    <nav class="navbar navbar-dark bg-warning mb-3">
+        <span class="navbar-brand mb-0 h1">Consultores Natura</span>
+    </nav>
+    <div class="container" id="contentForm">
+        <form class="mb-3" id="form">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite o nome..." required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="codigo">Código Consultor</label>
+                        <input type="text" name="codigo" id="codigo" class="form-control"
+                            placeholder="Digite o código..." required>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="text" name="senha" id="senha" class="form-control" placeholder="Digite a senha...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="text" name="email" id="email" class="form-control"
+                            placeholder="Digite o e-mail...">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="senhaEmail">Senha do E-mail</label>
+                        <input type="text" name="senhaEmail" id="senhaEmail" class="form-control" placeholder="Digite a senha do e-mail...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="dataCadastroDigital">Data Cadastro Digital</label>
+                        <input type="text" name="dataCadastroDigital" id="dataCadastroDigital" class="form-control"
+                            placeholder="Digite a data...">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="senhaContaNatura">Senha da conta Natura</label>
+                        <input type="text" name="senhaContaNatura" id="senhaContaNatura" class="form-control" placeholder="Digite a senha da conta Natura...">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" name="telefone" id="telefone" class="form-control"
+                            placeholder="Digite o telefone...">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-2 d-flex align-items-end">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="whatsapp">
+                        <label class="form-check-label" for="whatsapp">Whatsapp</label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label for="nivel">Nível</label>
+                        <select class="form-control" id="nivel">
+                            <option>Selecione...</option>
+                            <option value="Semente">Semente</option>
+                            <option value="Bronze">Bronze</option>
+                            <option value="Prata">Prata</option>
+                            <option value="Ouro">Ouro</option>
+                            <option value="Diamante">Diamante</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="observacoes">Observações</label>
+                        <textarea name="observacoes" id="observacoes" cols="30" rows="10" class="form-control" placeholder="Digite sua observação..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+
+    <div class="container" id="contentForm">
+        <h1 class="my-5">Lista de Consultores</h1>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Procurar..." id="filtro">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contentQuery">
+    </div>
+
+
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmação</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Tem certeza que deseja apagar o consultor <span id="modalNomeConsultor"></span>?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-danger" id="btnExcluir">Apagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <script src="lib/jquery.mask.js"></script>
+    <script src="lib/popper.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
