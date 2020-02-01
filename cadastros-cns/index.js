@@ -17,10 +17,8 @@ $(function(){
 
 	$("#filtro").keyup(function(){
 	  var texto = $(this).val();
-	  
 	  $(".resultado").each(function(){
-		var resultado = $(this).text().toUpperCase().indexOf(' '+texto.toUpperCase());
-		
+        var resultado = $(this).text().toUpperCase().indexOf(texto.toUpperCase());
 		if(resultado < 0) {
 		  $(this).fadeOut();
 		}else {
